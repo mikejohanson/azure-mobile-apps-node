@@ -15,13 +15,13 @@
     "travis": "npm run lint && npm run testCI"
   },
   "dependencies": {
-    "azure-odata-sql": "^0.1.0",
+    "azure-odata-sql": "^0.2.0",
     "azure-query-js": "^0.1.0",
     "azure-sb": "^0.10.3",
     "body-parser": "^1.18.2",
     "express": "^4.12.4",
-    "jsonwebtoken": "^7.0.0",
-    "mssql": "^3.2.0",
+    "jsonwebtoken": "^8.1.0",
+    "mssql": "^4.1.0",
     "ua-parser": "^0.3.5",
     "uuid": "^3.1.0",
     "winston": "^2.4.0"
