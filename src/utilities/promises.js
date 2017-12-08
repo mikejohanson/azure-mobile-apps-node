@@ -7,9 +7,7 @@
 Provides a wrapper around standard promise libraries along with a number of helper
 functions, allowing substitution of ES6 compliant promise implementations.
 */
-var Constructor = typeof Promise === 'undefined'
-    ? require('es6-promise').Promise
-    : Promise;
+var Constructor = Promise;
 
 var api = module.exports = {
     /** Gets the constructor that is used to create promises */

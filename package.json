@@ -18,14 +18,13 @@
     "azure-odata-sql": "^0.1.0",
     "azure-query-js": "^0.1.0",
     "azure-sb": "^0.10.3",
-    "body-parser": "^1.13.1",
-    "es6-promise": "^3.1.2",
+    "body-parser": "^1.18.2",
     "express": "^4.12.4",
     "jsonwebtoken": "^7.0.0",
     "mssql": "^3.2.0",
     "ua-parser": "^0.3.5",
-    "uuid": "^3.0.0",
-    "winston": "^2.1.0"
+    "uuid": "^3.1.0",
+    "winston": "^2.4.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",
@@ -33,7 +32,7 @@
     "chai-subset": "^1.0.1",
     "jsdoc": "^3.3.2",
     "jshint": "^2.9.1",
-    "minami": "danderson00/minami",
+    "minami": "github:danderson00/minami",
     "mocha": "^3.0.2",
     "q": "^1.4.1",
     "sinon": "^1.16.1",
