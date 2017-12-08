@@ -19,7 +19,7 @@
     "azure-query-js": "^0.1.0",
     "azure-sb": "^0.10.3",
     "body-parser": "^1.18.2",
-    "express": "^4.12.4",
+    "express": "^4.16.2",
     "jsonwebtoken": "^8.1.0",
     "mssql": "^4.1.0",
     "ua-parser": "^0.3.5",
