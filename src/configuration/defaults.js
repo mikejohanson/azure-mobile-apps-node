@@ -41,9 +41,14 @@ module.exports = function () {
             hostnames: ['localhost']
         },
         data: {
-            provider: 'sqlite',
+            provider: 'mssql',
             schema: 'dbo',
-            dynamicSchema: true
+            dynamicSchema: true,
+            server: 'localhost',
+            port:1401,
+            database: 'studtec',
+            user: 'sa',
+            password:  'R43$fof983l!'
         },
         auth: {
             secret: '0000'
