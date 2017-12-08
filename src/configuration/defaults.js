@@ -45,7 +45,7 @@ module.exports = function () {
             schema: 'dbo',
             dynamicSchema: true,
             server: 'localhost',
-            database: 'studtec',
+            database: 'master',
             user: 'sa',
             password:  'R43$fof983l!'
         },
