@@ -7,7 +7,7 @@
 by the {@link module:azure-mobile-apps/src/express/middleware/swagger swagger middleware}.
 */
 var express = require('express'),
-    ua = require('ua-parser'),
+    ua = require('useragent'),
     path = require('path');
 
 /**
