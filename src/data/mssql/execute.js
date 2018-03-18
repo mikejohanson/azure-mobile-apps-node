@@ -10,11 +10,11 @@ var mssql = require('mssql'),
     connection, connectionPromise;
 
 module.exports = function (config, statement) {
-    if(statement.noop)
+    if (statement.noop)
         return promises.resolved();
 
     if (!connectionPromise) {
-        connection = new mssql.Connection(config);
+        connection = new mssql.ConnectionPool(config);
         connectionPromise = connection.connect()
             .catch(function (err) {
                 connectionPromise = undefined;
@@ -29,9 +29,9 @@ module.exports = function (config, statement) {
 
         request.multiple = statement.multiple;
 
-        if(statement.parameters) statement.parameters.forEach(function (parameter) {
+        if (statement.parameters) statement.parameters.forEach(function (parameter) {
             var type = parameter.type || helpers.getMssqlType(parameter.value);
-            if(type)
+            if (type)
                 request.input(parameter.name, type, parameter.value);
             else
                 request.input(parameter.name, parameter.value);
@@ -41,13 +41,17 @@ module.exports = function (config, statement) {
 
         return request.query(statement.sql)
             .then(function (results) {
-                return statement.transform ? statement.transform(results) : results;
+                if (statement.multiple === true) {
+                    return statement.transform ? statement.transform(results.recordsets) : results.recordsets;
+                } else {
+                    return statement.transform ? statement.transform(results.recordset) : results.recordset;
+                }
             })
             .catch(function (err) {
-                if(err.number === errorCodes.UniqueConstraintViolation)
+                if (err.number === errorCodes.UniqueConstraintViolation)
                     throw errors.duplicate('An item with the same ID already exists');
 
-                if(err.number === errorCodes.InvalidDataType)
+                if (err.number === errorCodes.InvalidDataType)
                     throw errors.badRequest('Invalid data type provided');
 
                 return promises.rejected(err);
