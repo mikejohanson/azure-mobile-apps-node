@@ -103,12 +103,12 @@ describe('azure-mobile-apps.data.integration.concurrency', function () {
 
     it('executes multiple statements concurrently', function () {
         var dynamic = data({ name: 'concurrency', dynamicSchema: true }),
-            static = data({ name: 'concurrency', dynamicSchema: false }),
+            _static = data({ name: 'concurrency', dynamicSchema: false }),
             dynamicComplete, staticComplete;
 
         return promises.all([
             dynamic.insert({ id: '1' }),
-            static.insert({ id: '2' })
+            _static.insert({ id: '2' })
         ]);
     })
 
