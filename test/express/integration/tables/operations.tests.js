@@ -2,7 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // ----------------------------------------------------------------------------
 ﻿var expect = require('chai').use(require('chai-subset')).expect,
-    supertest = require('supertest-as-promised'),
+    supertest = require('supertest'),
     data = require('../../../../src/data'),
     express = require('express'),
     mobileApps = require('../../../appFactory'),

@@ -5,7 +5,7 @@ var sinon = require('sinon'),
     expect = require('chai')
         .use(require('sinon-chai'))
         .expect,
-    request = require('supertest-as-promised'),
+    request = require('supertest'),
     express = require('express'),
     mobileApps = require('../../appFactory').ignoreEnvironment,
     nhStub, notifFactoryStub, app, installation;

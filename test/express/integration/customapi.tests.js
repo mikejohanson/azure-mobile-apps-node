@@ -2,7 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // ----------------------------------------------------------------------------
 var expect = require('chai').expect,
-    request = require('supertest-as-promised'),
+    request = require('supertest'),
     auth = require('../../../src/auth')({ secret: 'secret' }),
     token = auth.sign({ "uid": "Facebook:someuserid@hotmail.com" }),
     app, mobileApp;

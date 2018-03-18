@@ -1,5 +1,5 @@
 var expect = require('chai').use(require('chai-subset')).expect,
-    supertest = require('supertest-as-promised'),
+    supertest = require('supertest'),
     express = require('express'),
     mobileApps = require('../../appFactory'),
     app, mobileApp;

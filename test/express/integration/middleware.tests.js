@@ -2,7 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // ----------------------------------------------------------------------------
 var expect = require('chai').expect,
-    supertest = require('supertest-as-promised'),
+    supertest = require('supertest'),
     mobileApps = require('../../appFactory'),
     app = require('express')(),
     mobileApp;
