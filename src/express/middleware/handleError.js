@@ -29,6 +29,8 @@ module.exports = function (configuration) {
             res.status(400).json(normaliseError(err));
         else if (err.notFound)
             res.status(404).json({ error: 'The item does not exist' });
+        else if (err.statusCode)
+            res.status(err.statusCode).json({ error: 'Access Denied' });
         else {
             log.error(err);
             res.status(500).json(normaliseError(err));
