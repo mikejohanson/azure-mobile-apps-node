@@ -46,7 +46,7 @@ module.exports = function (configuration) {
         if(err instanceof Error)
             return {
                 error: err.message,
-                stack: configuration.debug ? err.stack : undefined
+                stack: configuration != null && configuration.debug ? err.stack : undefined
             };
 
         if(err.constructor === String)
