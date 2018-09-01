@@ -3,7 +3,7 @@
   "version": "4.0.2",
   "description": "Build mobile apps with data storage, push notifications and offline sync in minutes.",
   "main": "src/index.js",
-  "typings": "typings/main.d.ts",
+  "typings": "typings/azure-mobile-apps/azure-mobile-apps.d.ts",
   "author": "Microsoft",
   "repository": "Azure/azure-mobile-apps-node",
   "license": "MIT",

@@ -5,28 +5,29 @@
 
 /// <reference types="express" />
 /// <reference types="azure-sb" />
+import { Request, Response } from 'express'
+import { NotificationHubService } from "azure-sb";
 
-declare module "azure-mobile-apps" {
-    interface AzureMobileApps {
-        (configuration?: Azure.MobileApps.Configuration): Azure.MobileApps.Platforms.Express.MobileApp;
-        table(): Azure.MobileApps.Platforms.Express.Table;
-        api(definition?: Azure.MobileApps.ApiDefinition): Azure.MobileApps.ApiDefinition;
-        logger: Azure.MobileApps.Logger;
-        query: Azure.MobileApps.Query;
-    }
+//export namespace AzureMobileApps {
+// export function (configuration?: Azure.MobileApps.Configuration): Azure.MobileApps.Platforms.Express.MobileApp;
+export function table(): Azure.MobileApps.Platforms.Express.Table;
+export function api(definition?: Azure.MobileApps.ApiDefinition): Azure.MobileApps.ApiDefinition;
+export const logger: Azure.MobileApps.Logger;
+export const query: Azure.MobileApps.Query;
 
-    var out: AzureMobileApps;
-    export = out;
-}
-declare module "azure-mobile-apps/src/logger" {
-    var logger: Azure.MobileApps.Logger;
-    export = logger;
-}
 
-declare module "azure-mobile-apps/src/query" {
-    var query: Azure.MobileApps.Query;
-    export = query;
-}
+// var out: AzureMobileApps;
+// export = out;
+//}
+// declare module "azure-mobile-apps/src/logger" {
+//     var logger: Azure.MobileApps.Logger;
+//     export = logger;
+// }
+
+// declare module "azure-mobile-apps/src/query" {
+//     var query: Azure.MobileApps.Query;
+//     export = query;
+// }
 
 declare namespace Azure.MobileApps {
     // the additional Platforms namespace is required to avoid collisions with the main Express namespace
@@ -54,6 +55,7 @@ declare namespace Azure.MobileApps {
                 insert: TableOperation;
                 delete: TableOperation;
                 undelete: TableOperation;
+                operation: Middleware;
             }
 
             interface TableOperation {
@@ -75,7 +77,7 @@ declare namespace Azure.MobileApps {
     export module Data {
         interface Table {
             read(query: QueryJs): Thenable<any[]>;
-            update(item: any, query: QueryJs): Thenable<any>;
+            update(item: any, query?: QueryJs): Thenable<any>;
             insert(item: any): Thenable<any>;
             delete(query: QueryJs, version: string): Thenable<any>;
             undelete(query: QueryJs, version: string): Thenable<any>;
@@ -93,7 +95,7 @@ declare namespace Azure.MobileApps {
     // auth
     interface User {
         id: string;
-        claims: any[];
+        claims: any[] | any;
         token: string;
         getIdentity(provider: string): Thenable<any>;
     }
@@ -177,7 +179,7 @@ declare namespace Azure.MobileApps {
     // query
     interface Query {
         create(tableName: string): QueryJs;
-        fromRequest(req: Express.Request): QueryJs;
+        fromRequest(req: Express.IRequest): QueryJs;
         toOData(query: QueryJs): OData;
     }
 
@@ -207,21 +209,21 @@ declare namespace Azure.MobileApps {
     }
 
     // general
-    var nh: Azure.ServiceBus.NotificationHubService;
+    var nh: NotificationHubService;
 
     interface Context {
         query: QueryJs;
-        id: string | number;
+        id: string;
         item: any;
-        req: Express.Request;
-        res: Express.Response;
+        req: Express.IRequest;
+        res: Express.IResponse;
         data: ContextData;
         tables: (tableName: string) => Data.Table;
         user: User;
         push: typeof nh;
         logger: Logger;
         execute(): Thenable<any>;
-        next(error: string|Error): any;
+        next(error: string | Error): any;
     }
 
     interface ContextData {
@@ -237,7 +239,7 @@ declare namespace Azure.MobileApps {
     interface SqlParameterDefinition {
         name: string;
         value: any;
-     }		     
+    }
 
     interface TableDefinition {
         access?: AccessType;
@@ -260,10 +262,11 @@ declare namespace Azure.MobileApps {
         perUser?: boolean;
         recordsExpire?: Duration;
         webhook?: Webhook | boolean;
+        seed?: Array<any>;
     }
 
     type AccessType = 'anonymous' | 'authenticated' | 'disabled';
-    
+
     interface Duration {
         milliseconds?: number;
         seconds?: number;
@@ -306,7 +309,7 @@ declare namespace Azure.MobileApps {
     }
 
     interface Middleware {
-        (req: Express.Request, res: Express.Response, next: NextMiddleware): void;
+        (req: Express.IRequest, res: Express.IResponse, next: NextMiddleware): void;
     }
 
     interface NextMiddleware {
@@ -316,11 +319,11 @@ declare namespace Azure.MobileApps {
 
 // additions to the Express modules
 declare namespace Express {
-    interface Request {
+    interface IRequest extends Request {
         azureMobile: Azure.MobileApps.Context
     }
 
-    interface Response {
+    interface IResponse extends Response {
         results?: any;
     }
 }
