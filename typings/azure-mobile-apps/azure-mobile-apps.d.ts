@@ -5,7 +5,7 @@
 
 /// <reference types="express" />
 /// <reference types="azure-sb" />
-import { Request, Response } from 'express'
+import { Request, Response, RequestHandler, ErrorRequestHandler } from 'express'
 import { NotificationHubService } from "azure-sb";
 
 //export namespace AzureMobileApps {
@@ -48,8 +48,8 @@ declare namespace Azure.MobileApps {
             }
 
             interface Table extends TableDefinition {
-                use(...middleware: Middleware[]): Table;
-                use(middleware: Middleware[]): Table;
+                use(...middleware: (Middleware | ErrorRequestHandler)[]): Table;
+                use(middleware: (Middleware | ErrorRequestHandler)[]): Table;
                 read: TableOperation;
                 update: TableOperation;
                 insert: TableOperation;
@@ -60,8 +60,8 @@ declare namespace Azure.MobileApps {
 
             interface TableOperation {
                 (operationHandler: (context: Context) => void): Table;
-                use(...middleware: Middleware[]): Table;
-                use(middleware: Middleware[]): Table;
+                use(...middleware: (Middleware | ErrorRequestHandler)[]): Table;
+                use(middleware: (Middleware | ErrorRequestHandler)[]): Table;
                 access?: AccessType;
             }
 
