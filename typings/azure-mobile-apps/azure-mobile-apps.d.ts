@@ -3,8 +3,8 @@
 // Definitions by: Microsoft Azure <https://github.com/Azure/>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-/// <reference path="../express/express.d.ts" />
-/// <reference path="../azure-sb/azure-sb.d.ts" />
+/// <reference types="express" />
+/// <reference types="azure-sb" />
 
 declare module "azure-mobile-apps" {
     interface AzureMobileApps {
