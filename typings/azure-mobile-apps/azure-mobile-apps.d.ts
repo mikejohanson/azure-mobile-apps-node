@@ -76,11 +76,23 @@ declare namespace Azure.MobileApps {
 
     export module Data {
         interface Table {
-            read(query: QueryJs): Thenable<any[]>;
+            // I DONT KNOW ABOUT THIS -------------------START
+            includeTotalCount(): Table;
+            includeDeleted(): Table;
+            orderBy(properties: string): Table;
+            orderByDescending(properties: string): Table;
+            select(...properties: string[]): Table;
+            select(properties: string): Table;
+            skip(count: number): Table;
+            take(count: number): Table;
+            where(filter: any): Table;
+            where(filterFunc: Function, ...params: (string | number | Date)[]): Table;
+            // I DONT KNOW ABOUT THIS -------------------END
+            read(query?: QueryJs): Thenable<any[]>;
             update(item: any, query?: QueryJs): Thenable<any>;
             insert(item: any): Thenable<any>;
-            delete(query: QueryJs, version: string): Thenable<any>;
-            undelete(query: QueryJs, version: string): Thenable<any>;
+            delete(query: QueryJs | any, version?: string): Thenable<any>;
+            undelete(query: QueryJs | any, version?: string): Thenable<any>;
             truncate(): Thenable<void>;
             initialize(): Thenable<void>;
             schema(): Thenable<Column[]>;
@@ -188,10 +200,12 @@ declare namespace Azure.MobileApps {
         includeDeleted(): QueryJs;
         orderBy(properties: string): QueryJs;
         orderByDescending(properties: string): QueryJs;
+        select(...properties: string[]): QueryJs;
         select(properties: string): QueryJs;
         skip(count: number): QueryJs;
         take(count: number): QueryJs;
         where(filter: any): QueryJs;
+        where(filterFunc: Function, ...params: (string | number | Date)[]): QueryJs;
         // these are properties added by the SDK
         id?: string | number;
         single?: boolean;
