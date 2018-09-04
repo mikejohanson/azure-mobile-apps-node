@@ -232,6 +232,7 @@ declare namespace Azure.MobileApps {
         req: Express.IRequest;
         res: Express.IResponse;
         data: ContextData;
+        configuration: Configuration;
         tables: (tableName: string) => Data.Table;
         user: User;
         push: typeof nh;
