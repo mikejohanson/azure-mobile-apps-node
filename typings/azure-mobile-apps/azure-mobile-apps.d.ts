@@ -88,14 +88,14 @@ declare namespace Azure.MobileApps {
             where(filter: any): Table;
             where(filterFunc: Function, ...params: (string | number | Date)[]): Table;
             // I DONT KNOW ABOUT THIS -------------------END
-            read(query?: QueryJs): Thenable<any[]>;
-            update(item: any, query?: QueryJs): Thenable<any>;
-            insert(item: any): Thenable<any>;
-            delete(query: QueryJs | any, version?: string): Thenable<any>;
-            undelete(query: QueryJs | any, version?: string): Thenable<any>;
-            truncate(): Thenable<void>;
-            initialize(): Thenable<void>;
-            schema(): Thenable<Column[]>;
+            read(query?: QueryJs): Promise<any[]>;
+            update(item: any, query?: QueryJs): Promise<any>;
+            insert(item: any): Promise<any>;
+            delete(query: QueryJs | any, version?: string): Promise<any>;
+            undelete(query: QueryJs | any, version?: string): Promise<any>;
+            truncate(): Promise<void>;
+            initialize(): Promise<void>;
+            schema(): Promise<Column[]>;
         }
 
         interface Column {
@@ -236,13 +236,13 @@ declare namespace Azure.MobileApps {
         user: User;
         push: typeof nh;
         logger: Logger;
-        execute(): Thenable<any>;
+        execute(): Promise<any>;
         next(error: string | Error): any;
     }
 
     interface ContextData {
         (table: TableDefinition): Data.Table;
-        execute(q: SqlQueryDefinition): Thenable<any>;
+        execute(q: SqlQueryDefinition): Promise<any>;
     }
 
     interface SqlQueryDefinition {
