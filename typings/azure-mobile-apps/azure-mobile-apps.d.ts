@@ -86,7 +86,7 @@ declare namespace Azure.MobileApps {
             skip(count: number): Table;
             take(count: number): Table;
             where(filter: any): Table;
-            where(filterFunc: Function, ...params: (string | number | Date)[]): Table;
+            where(filterFunc: Function, ...params: any[]): Table;
             // I DONT KNOW ABOUT THIS -------------------END
             read(query?: QueryJs): Promise<any[]>;
             update(item: any, query?: QueryJs): Promise<any>;
@@ -205,7 +205,7 @@ declare namespace Azure.MobileApps {
         skip(count: number): QueryJs;
         take(count: number): QueryJs;
         where(filter: any): QueryJs;
-        where(filterFunc: Function, ...params: (string | number | Date)[]): QueryJs;
+        where(filterFunc: Function, ...params: any[]): QueryJs;
         // these are properties added by the SDK
         id?: string | number;
         single?: boolean;
