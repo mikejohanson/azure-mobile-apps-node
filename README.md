@@ -4,11 +4,6 @@
 [![devDependency Status](https://david-dm.org/Azure/azure-mobile-apps-node/dev-status.svg)](https://david-dm.org/Azure/azure-mobile-apps-node#info=devDependencies)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Azure/azure-mobile-apps-node?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-# Visual Studio App Center as modern and integrated solution for mobile development
- Visual Studio App Center supports end to end and integrated services central to mobile app development. Developers can use the **Build**, **Test** and **Distribute** services to set up Continuous Integration and Delivery pipelines. Once the app is deployed, developers can monitor the status and usage of their app using the **Analytics** and **Diagnostics** services, and engage with users using the **Push** service. Developers can also leverage **Auth** to authenticate their users and **Data** to persist and sync app data in the cloud.
- 
-If you are looking to integrate cloud services in your mobile application, sign up with [App Center](https://appcenter.ms/signup?utm_source=zumo&utm_medium=Azure&utm_campaign=GitHub) today.
-
 # Azure Mobile Apps - Node SDK
 
 ## Basic Usage
