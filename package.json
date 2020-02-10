@@ -34,7 +34,7 @@
     "jsdoc": "^3.3.2",
     "jshint": "^2.9.1",
     "minami": "danderson00/minami",
-    "mocha": "^7.0.1",
+    "mocha": "^3.0.2",
     "q": "^1.4.1",
     "sinon": "^1.16.1",
     "sinon-as-promised": "^4.0.2",
