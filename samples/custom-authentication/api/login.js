@@ -52,7 +52,7 @@ function createResponse(sign, user) {
 }
 
 function hashPassword(password) {
-    return bcrypt.hashSync(password, 10);
+    return bcrypt.hashSync(password, 8);
 }
 
 function validatePassword(password, hashed) {
