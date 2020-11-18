@@ -78,7 +78,8 @@ describe('azure-mobile-apps.express.middleware.nextLink', function () {
             var req = {
                 protocol: 'https',
                 hostname: 'host.net',
-                path: 'tables/table',
+                path: '',
+                baseUrl: '/tables/table',
                 query: {
                     "zumo-api-version": '2.0.0',
                     $filter: 'filters',
