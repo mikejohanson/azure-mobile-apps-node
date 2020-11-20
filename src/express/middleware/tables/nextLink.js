@@ -35,7 +35,7 @@ nextLink.createLinkHeader = function (req, take, skip) {
     var urlObj = {
         protocol: req.protocol,
         hostname: req.hostname,
-        pathname: req.path,
+        pathname: req.baseUrl + req.path,
         query: assign(req.query, { $top: take, $skip: skip })
     };
 
