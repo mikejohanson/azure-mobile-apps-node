@@ -1,0 +1,6 @@
+full-trace: true
+check-leaks: true
+globals:
+  - __core-js_shared__
+timeout: 2000
+exit: true

@@ -8,7 +8,7 @@
   "repository": "Azure/azure-mobile-apps-node",
   "license": "MIT",
   "scripts": {
-    "test": "npm run lint && mocha",
+    "test": "npm run lint && mocha --recursive",
     "lint": "jshint src",
     "jsdoc": "jsdoc -c jsdoc/config.json",
     "testCI": "mocha --timeout 10000",
@@ -34,11 +34,11 @@
     "jsdoc": "^3.6.10",
     "jshint": "^2.13.4",
     "minami": "github:danderson00/minami",
-    "mocha": "^3.0.2",
+    "mocha": "^10.0.0",
     "q": "^1.4.1",
-    "sinon": "^7.5.0",
+    "sinon": "^14.0.0",
     "sinon-chai": "^3.7.0",
     "supertest": "^3.3.0",
-    "swagger-ui": "^3.23.0"
+    "swagger-ui": "^4.11.1"
   }
 }
