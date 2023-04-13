@@ -6,11 +6,15 @@ The azure-mobile-apps logging framework, configured using {@link loggingConfigur
 @module azure-mobile-apps/src/logger
 */
 var winston = require('winston'),
-    logger = new (winston.Logger)({
+    logger = new winston.createLogger({
         // set reasonable defaults, mostly for logging errors that occur loading
         // configuration, before the logger has actually been configured
+        format: winston.format.combine(
+            winston.format.colorize(),
+            winston.format.timestamp()
+        ),
         level: 'info',
-        transports: [new (winston.transports.Console)()]
+        transports: [new winston.transports.Console()]
     });
 
 /**
