@@ -127,13 +127,11 @@ declare namespace Azure.MobileApps {
         apiRootPath?: string;
         tableRootPath?: string;
         notificationRootPath?: string;
-        swaggerPath?: string;
         authStubRoute?: string;
         debug?: boolean;
         version?: string;
         apiVersion?: string;
         homePage?: boolean;
-        swagger?: boolean;
         maxTop?: number;
         pageSize?: number;
         logging?: Configuration.Logging;

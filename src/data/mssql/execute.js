@@ -14,6 +14,7 @@ module.exports = function (config, statement) {
         return promises.resolved();
 
     if (!connectionPromise) {
+        config.options.trustServerCertificate = true;
         connection = new mssql.ConnectionPool(config);
         connectionPromise = connection.connect()
             .catch(function (err) {

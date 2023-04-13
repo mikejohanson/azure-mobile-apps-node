@@ -1,6 +1,5 @@
 *.log
 node_modules
-jsdoc/out
 azureMobile.js
 *.sqlite
 *.sqlite-journal
