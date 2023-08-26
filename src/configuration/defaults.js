@@ -1,8 +1,7 @@
 // ----------------------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // ----------------------------------------------------------------------------
-var winston = require('winston'),
-    path = require('path'),
+var path = require('path'),
     environment = require('../utilities/environment'),
     packageJson = require('../../package.json');
 
@@ -24,14 +23,7 @@ module.exports = function () {
         pageSize: 50,
         userIdColumn: 'userId',
         logging: {
-            level: environment.debug ? 'debug' : 'info',
-            transports: [
-                new (winston.transports.Console)({
-                    colorize: true,
-                    timestamp: true,
-                    showLevel: true
-                })
-            ]
+            level: environment.debug ? 'debug' : 'info'
         },
         cors: {
             exposeHeaders: 'Link,Etag',

@@ -9,8 +9,7 @@ in the next agrument. Command line arguments override all other options.
 @param {string} logging.level Sets the minimum level for log statements to be logged. Valid values are 'error', 'warn', 'info', 'verbose', 'debug' and 'silly'.
 @param {string} promiseConstructor=native Sets the promise library being used. Valid vallues are 'q' and 'native'.
 */
-var winston = require('winston'),
-    q;
+var  q;
 
 try {
     q = require('q');
@@ -35,14 +34,8 @@ module.exports = function (configuration, commandLineArguments) {
         switch (property) {
             case 'logging.level':
                 configuration.logging = {
-                    level: customArgs[property],
-                    transports: [
-                        new (winston.transports.Console)({
-                            colorize: true,
-                            timestamp: true,
-                            showLevel: true
-                        })
-                    ]
+                    level: customArgs[property]
+
                 };
                 break;
 
