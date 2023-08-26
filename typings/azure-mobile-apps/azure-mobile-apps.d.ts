@@ -166,7 +166,6 @@ declare namespace Azure.MobileApps {
 
         interface Logging {
             level?: string;
-            transports?: LoggingTransport[];
         }
 
         interface LoggingTransport { }
