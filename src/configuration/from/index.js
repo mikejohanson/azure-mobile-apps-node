@@ -31,6 +31,7 @@ module.exports = function (configuration) {
 
 // yeh maybe not the best place, should be in parent module, but then we get a circular reference
 module.exports.configureGlobals = function (configuration) {
-    logger.configure(configuration.logging);
+    //logger.configure(configuration.logging);
+    logger.level = configuration.logging.level;
     promises.setConstructor(configuration.promiseConstructor);
 };
