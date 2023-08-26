@@ -1,1 +1,0 @@
-This is a customized implementation of the [swagger-ui](https://github.com/swagger-api/swagger-ui) package that includes functionality to authenticate using Azure App Service authentication. The source can be found at https://github.com/danderson00/swagger-ui/tree/easyauth.

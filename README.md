@@ -80,6 +80,9 @@ To test steps 4-5, you can use any of the clients found in the [Client & Server 
 
 ## Running Tests
 
+ensure   trustServerCertificate   is   set   to   true   in   your   sql   server   connection   string   in   the   azureMobile.js   file   in   the   test   directory
+
+
 To run the suite of unit and integration tests, execute the following commands in a console window.
 
     git clone https://github.com/Azure/azure-mobile-apps-node.git

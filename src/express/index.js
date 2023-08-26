@@ -68,7 +68,6 @@ module.exports = function (configuration) {
     if(configuration.homePage)
         mobileApp.use('/', express.static(__dirname + '/../templates/static'));
 
-    mobileApp.use(configuration.swaggerPath, middleware('swagger'));
     mobileApp.use(middleware('handleError'));
 
     if(plugins.length)
