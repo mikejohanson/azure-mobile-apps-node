@@ -14,10 +14,10 @@ Create a new user object.
 @param {object} claims The claims associated with the user
 @returns An object with the members described below.
 */
-module.exports = function (authConfiguration, token, claims) {
+module.exports = function (authConfiguration, token, claims, userIdClaim = 'sub') {
     return {
         /** The user ID */
-        id: claims.sub,
+        id: claims[userIdClaim],
         /** The JWT token */
         token: token,
         /** The authenticated claims */

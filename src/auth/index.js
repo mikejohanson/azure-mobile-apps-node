@@ -8,6 +8,7 @@
 var user = require('./user'),
     jwt = require('jsonwebtoken'),
     promises = require('../utilities/promises');
+const jwkToPem = require('jwk-to-pem');
 
 /**
 Create an instance of a helper based on the supplied configuration.
@@ -35,13 +36,29 @@ else
                     audience: configuration.audience || 'urn:microsoft:windows-azure:zumo',
                     issuer: configuration.issuer || 'urn:microsoft:windows-azure:zumo'
                 };
+                if (typeof key !== 'string') {
+                    // Extract the header of the JWT to get the 'kid' field
+                    const decodedHeader = jwt.decode(token, { complete: true });
+                    const kid = decodedHeader.header.kid;
+                    // Find the matching key in the provided JWKS (JSON Web Key Set)
+                    const key2 = key.keys.find(k => k.kid === kid);
+                    // Convert the JWK to PEM
+                    const pem = jwkToPem(key2);
 
-                jwt.verify(token, key, options, function (err, claims) {
-                    if(err)
-                        reject(err);
-                    else
-                        resolve(user(configuration, token, claims));
-                });
+                    jwt.verify(token, pem, options, function (err, claims) {
+                        if (err)
+                            reject(err);
+                        else
+                            resolve(user(configuration, token, claims, configuration.userIdClaim));
+                    });
+                } else {
+                    jwt.verify(token, key, options, function (err, claims) {
+                        if (err)
+                            reject(err);
+                        else
+                            resolve(user(configuration, token, claims));
+                    });
+                }
             });
         },
         /**
@@ -61,15 +78,15 @@ var auth = require('azure-mobile-apps/src/auth')(mobileApp.configuration.auth);
 res.status(200).send(auth.sign({ sub: "myUserId" }));
         */
         sign: function (payload) {
-            var options = { };
+            var options = {};
 
-            if(!payload.aud)
+            if (!payload.aud)
                 options.audience = configuration.audience || 'urn:microsoft:windows-azure:zumo';
 
-            if(!payload.iss)
+            if (!payload.iss)
                 options.issuer = configuration.issuer || 'urn:microsoft:windows-azure:zumo';
 
-            if(!payload.exp)
+            if (!payload.exp)
                 options.expiresIn = (configuration.expires || 1440) * 60;
 
             return jwt.sign(payload, key, options);
