@@ -10,8 +10,11 @@ var winston = require('winston'),
         // set reasonable defaults, mostly for logging errors that occur loading
         // configuration, before the logger has actually been configured
         format: winston.format.combine(
-            winston.format.timestamp(),
-            winston.format.cli()
+            winston.format.timestamp({
+                format: 'YYYY-MM-DD HH:mm:ss'
+            }),
+            winston.format.colorize(),
+            winston.format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
         ),
         level: 'info',
         transports: [new winston.transports.Console()]
