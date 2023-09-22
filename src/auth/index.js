@@ -36,7 +36,7 @@ else
                     audience: configuration.audience || 'urn:microsoft:windows-azure:zumo',
                     issuer: configuration.issuer || 'urn:microsoft:windows-azure:zumo'
                 };
-                if (typeof key?.keys == 'array') {
+                if (typeof configuration.secret?.keys == 'object') {
                     // Extract the header of the JWT to get the 'kid' field
                     const decodedHeader = jwt.decode(token, { complete: true });
                     const kid = decodedHeader.header.kid;
