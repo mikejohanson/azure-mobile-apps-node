@@ -41,7 +41,7 @@ else
                     const decodedHeader = jwt.decode(token, { complete: true });
                     const kid = decodedHeader.header.kid;
                     // Find the matching key in the provided JWKS (JSON Web Key Set)
-                    const key2 = key.keys.find(k => k.kid === kid);
+                    const key2 = configuration.secret.keys.find(k => k.kid === kid);
                     // Convert the JWK to PEM
                     const pem = jwkToPem(key2);
 
