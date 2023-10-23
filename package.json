@@ -29,7 +29,7 @@
     "winston": "^3.8.2"
   },
   "devDependencies": {
-    "@types/azure-sb": "^0.0.39",
+    "@types/azure-sb": "^0.0.42",
     "chai": "^4.3.8",
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.0.1",
