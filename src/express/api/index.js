@@ -26,7 +26,7 @@ module.exports = function (configuration) {
     var router = express.Router();
 
     // by default, only parse json
-    router.use(bodyParser.json());
+    router.use(bodyParser.json({limit: '3mb'}));
 
     /**
     Register a single api with the specified definition.
