@@ -10,19 +10,28 @@ module.exports = {
         var properties = parseProperties(connectionString),
             server = parseServer(properties['server'] || properties['data source']);
 
-        return connectionString && {
+        let x = connectionString && {
             provider: 'mssql',
-            user: properties['user id'] || properties['userid'] || properties['uid'],
-            password: properties['password'] || properties['pwd'],
             server: server,
             port: parsePort(properties['server'] || properties['data source'] || properties['datasource']),
             database: properties['database'] || properties['initial catalog'] || properties['initialcatalog'],
             connectionTimeout: (parseInt(properties['connection timeout'] || properties['connectiontimeout']) * 1000) || 15000,
+            authentication:{
+                type: properties['authentication type'] || 'default'
+            },
             options: {
                 // Azure requires encryption
-                encrypt: module.exports.serverRequiresEncryption(server) || parseBoolean(properties['encrypt'])
+                encrypt: module.exports.serverRequiresEncryption(server) || parseBoolean(properties['encrypt']),
+                clientId: properties['client id'] 
             }
         };
+
+        if(properties['authentication type'] == null) {
+            x.user = properties['user id'] || properties['userid'] ||  properties['uid']
+            x.password = properties['password'] || properties['pwd']
+        }
+
+        return x;
 
         function parseServer(value) {
             if(!value)
