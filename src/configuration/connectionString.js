@@ -16,6 +16,7 @@ module.exports = {
             port: parsePort(properties['server'] || properties['data source'] || properties['datasource']),
             database: properties['database'] || properties['initial catalog'] || properties['initialcatalog'],
             connectionTimeout: (parseInt(properties['connection timeout'] || properties['connectiontimeout']) * 1000) || 15000,
+            requestTimeout: (parseInt(properties['request timeout'] || properties['requesttimeout']) * 1000) || 15000,
             authentication:{
                 type: properties['authentication type'] || 'default'
             },
