@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@types/azure-sb": "^0.0.39",
-    "chai": "^4.3.8",
+    "chai": "^5.2.1",
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.0.1",
     "jshint": "^2.13.6",
