@@ -7,7 +7,6 @@
 property.
 */
 var data = require('../../data'),
-    notifications = require('../../notifications'),
     attachOperators = require('../../query/attachOperators'),
     logger = require('../../logger');
 
@@ -16,15 +15,13 @@ Create a new instance of the createContext middleware
 @param {configuration} configuration The mobile app configuration
 */
 module.exports = function (configuration) {
-    var dataProvider = data(configuration),
-        notificationsClient = notifications(configuration.notifications).getClient();
+    var dataProvider = data(configuration);
 
     return function (req, res, next) {
         var context = req.azureMobile = {
             req: req,
             res: res,
             data: dataProvider,
-            push: notificationsClient,
             configuration: configuration,
             logger: logger,
             tables: function (name) {

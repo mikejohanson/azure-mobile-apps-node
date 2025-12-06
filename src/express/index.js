@@ -61,7 +61,6 @@ module.exports = function (configuration) {
         .use(middleware('createContext'))
         .use(middleware('authenticate'))
         .use(customMiddlewareRouter)
-        .use(configuration.notificationRootPath || '/push/installations', middleware('notifications'))
         .use(configuration.apiRootPath || '/api', apiMiddleware)
         .use(configuration.tableRootPath || '/tables', middleware('apiVersionCheck'), tableMiddleware, middleware('renderResults'));
 
