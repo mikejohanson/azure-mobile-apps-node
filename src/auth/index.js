@@ -7,8 +7,8 @@
 */
 var user = require('./user'),
     jwt = require('jsonwebtoken'),
+    crypto = require('crypto'),
     promises = require('../utilities/promises');
-const jwkToPem = require('jwk-to-pem');
 
 /**
 Create an instance of a helper based on the supplied configuration.
@@ -42,8 +42,9 @@ else
                     const kid = decodedHeader.header.kid;
                     // Find the matching key in the provided JWKS (JSON Web Key Set)
                     const key2 = configuration.secret.keys.find(k => k.kid === kid);
-                    // Convert the JWK to PEM
-                    const pem = jwkToPem(key2);
+                    // Convert the JWK to PEM using Node.js crypto
+                    const pem = crypto.createPublicKey({ key: key2, format: 'jwk' })
+                        .export({ type: 'spki', format: 'pem' });
 
                     jwt.verify(token, pem, options, function (err, claims) {
                         if (err)
